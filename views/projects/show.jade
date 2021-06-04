@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+    h1.
+        #{title}
+    form#formProject(name="addproject" method="post" action="")
+        if(isOwner)
+        a(href="/projects"): button Natrag
+        br
+        p Naslov: 
+            input#inputName(type="text" placeholder="Naziv projekta" name="project_name" readonly value="#{project.naziv}")
+        p Opis:
+            input#inputDescription(type="text" placeholder="Opis" name="project_description" readonly value="#{project.opis}")
+        p Cijena: 
+            input#inputPrice(type="number" placeholder="Cijena" name="project_price" readonly value="#{project.cijena}")
+        p Članovi: 
+            - if(project.clanovi.length > 0){
+            ul
+            - project.clanovi.forEach(function(item) {
+                li= item
+            - })
+            - }
+            - else 
+            p Nema članova na projektu.
+        p Početak: 
+            input#textStartDate(type="text" name="start_date" readonly value="#{project.pocetak.toDateString()}")
+        p Završetak: 
+            input#textEndDate(type="text" name="end_date" readonly value="#{project.zavrsetak.toDateString()}")
+        p Obavljeni poslovi: 
+            input#inputJobs(type="text" placeholder="Obavljeno" name="jobs_done" readonly value="#{project.obavljeno}")

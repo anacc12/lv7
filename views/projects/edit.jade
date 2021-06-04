@@ -1,0 +1,34 @@
+extends ../layout
+
+block content
+    h1.
+        #{title}
+    form#formProject(name="addproject" method="post" action="/projects/update/#{project._id}")
+        input(type='hidden' value='put' name='_method' enctype='application/x-www-form-urlencoded')
+        a(href="/projects"): button Natrag
+        input(type="hidden" name="isOwner" value="#{isOwner}")
+        br
+        if (isOwner)
+            input(type="hidden" name="clanovi[]" id="clanovi")
+            p Naziv: 
+                input#inputName(type="text" placeholder="Naziv projekta" name="project_name" value="#{project.naziv}" required=true)
+            p Opis:
+                input#inputDescription(type="text" placeholder="Opis" name="project_description" value="#{project.opis}" required=true)
+            p Cijena: 
+                input#inputPrice(type="number" placeholder="Cijena" name="project_price" value="#{project.cijena}" required=true)
+            p Članovi: 
+            select.chosen-select(data-placeholder='Odaberi clanove' name='clanovi[]' multiple=true)
+                option(value='') Nema clanova
+                each user in users
+                    option(value= user._id,selected = user.isSelected)=user.username
+            p Početak: 
+                input#textStartDate(type="date" name="start_date" value="#{pocetak}" required=true)
+            p Završetak: 
+                input#textEndDate(type="date" name="end_date" value="#{zavrsetak}" required=true)
+            p Obavljeni poslovi: 
+                input#inputJobs(type="text" placeholder="Obavljeno" name="jobs_done" value="#{project.obavljeno}" required=true)
+        else 
+            p Obavljeni poslovi: 
+                input#inputJobs(type="text" placeholder="Obavljeno" name="jobs_done" value="#{project.obavljeno}" required=true)
+        p
+            input#btnSubmit(type="submit" value="Submit")

@@ -1,0 +1,18 @@
+doctype html
+html
+    head
+    title= title
+
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+
+    link(rel='stylesheet' href='/stylesheets/style.css')
+
+    script(src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js')
+    link(rel='stylesheet' href='https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css')
+    script(src='https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js')
+    body
+    block navBar
+        a(href='/') Project
+        ul
+            include menu
+    block content

@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+    include ../message
+    br
+    br
+    form#formLogin(action='/login' method='post')
+        h1 Login
+        p
+            input(type='text' name='username' placeholder='Username' required)
+        p
+            input(type='password' name='password' placeholder='Password' required)
+        p
+            input#btnSubmit(type='submit' value='Login')

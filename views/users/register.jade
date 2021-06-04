@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  include ../message
+  br
+  br
+  form#formRegister(action='/register' method='post')
+    h1 Register
+    p
+      input(type='text' name='username' placeholder='Username' required)
+    p
+      input(type='password' name='password' placeholder='Password' required)
+    p
+      input#btnSubmit(type='submit' value='Register')

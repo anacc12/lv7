@@ -1,0 +1,29 @@
+extends ../layout
+block content
+    h1= title
+
+    #wrapper
+        #projectList
+            table#projects.table.table-hover.table-striped.table-bordered
+                thead
+                    th Naziv
+                    th Opis
+                    th Cijena
+                    th Obavljeni poslovi
+                    th Početak
+                    th Završetak
+                    th Admin?
+                tbody
+                if (projects && projects.length > 0)
+                    each project in projects
+                        tr
+                        td= project.naziv
+                        td= project.opis
+                        td= project.cijena
+                        td= project.obavljeno
+                        td= project.pocetak.toDateString()
+                        td= project.zavrsetak.toDateString()
+                        if(project.isOwner)
+                            td Da
+                        else
+                            td Ne

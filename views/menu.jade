@@ -1,0 +1,16 @@
+if locals.user
+    li
+        span= user.username
+    li
+        a(href='/projects?role=owner') Owner
+    li
+        a(href='/projects?role=member') Member
+    li
+        a(href='/projects/archive-projects') Archive
+    li
+        a(href='/logout') Logout
+else
+    li
+        a(href='/login') Login
+    li
+        a(href='/register') Register

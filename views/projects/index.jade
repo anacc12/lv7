@@ -1,0 +1,43 @@
+extends ../layout
+block content
+    include ../message
+    h1= title
+
+    #wrapper
+        if(isOwner)
+            a(href="projects/add"): button + Novi projekt
+            <br>
+            <br>
+            <br>
+        #projectList
+            table#projects.table.table-hover.table-striped.table-bordered
+                thead
+                    th Naziv
+                    th Opis
+                    th Cijena
+                    th Obavljeni poslovi                    
+                    th Početak
+                    th Završetak
+                    th Članovi
+                    th 
+                tbody
+                if (projects && projects.length > 0)
+                    each project in projects
+                        tr
+                        td= project.naziv
+                        td= project.opis
+                        td= project.cijena
+                        td= project.obavljeno
+                        td= project.pocetak
+                        td= project.zavrsetak
+                        td= project.clanovi
+                        td
+                          if(isOwner)
+                                a(href='/projects/#{project._id}') Prikaži <br>
+                                a(href='/projects/archive/#{project._id}') Arhiviraj <br>
+                                a(href='/projects/edit/#{project._id}') Uredi <br>
+                                form(action='/projects/delete/#{project._id}' method='post')
+                                    input(type='hidden' value='delete' name='_method',enctype='application/x-www-form-urlencoded')
+                                    button(type='submit' class="btn btn-danger" onclick="return confirm('Delete this project?')") Obriši
+                          else
+                              a(href='/projects/edit/#{project._id}') Uredi
